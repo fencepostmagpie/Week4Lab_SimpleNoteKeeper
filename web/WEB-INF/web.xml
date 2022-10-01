@@ -19,7 +19,7 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>NoteServlet</servlet-name>
-        <url-pattern>/editnote</url-pattern>
+        <url-pattern>/note?edit</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

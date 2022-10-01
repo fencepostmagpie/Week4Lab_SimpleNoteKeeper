@@ -47,13 +47,12 @@ public class NoteServlet extends HttpServlet {
         request.setAttribute("note", note);
         request.setAttribute("title", note.getTitle());
         request.setAttribute("content", note.getContent());
-        String edit = "";
-        edit = request.getParameter("request");
-        if (edit != null && edit.isEmpty()) {
-            getServletContext().getRequestDispatcher("/WEB-INF/viewnote.jsp")
-                    .forward(request, response);
-        } else {
+        String edit = request.getParameter("request");//This checks if the edit button has been clicked 
+        if (edit != null && edit.isEmpty()) { //If the edit parameter is active, the edit note page should be displayed
             getServletContext().getRequestDispatcher("/WEB-INF/editnote.jsp")
+                    .forward(request, response);
+        } else { //Otherwise, the view note page is displayed
+            getServletContext().getRequestDispatcher("/WEB-INF/viewnote.jsp")
                     .forward(request, response);
         }
     }
@@ -61,11 +60,6 @@ public class NoteServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String edit = request.getParameter("request");
-        if (edit != null && edit.isEmpty()) {
-            getServletContext().getRequestDispatcher("/WEB-INF/editnote.jsp")
-                    .forward(request, response);
-        } else {
             String path = getServletContext().getRealPath("/WEB-INF/note.txt");
             PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter(path, false)));
 
@@ -73,10 +67,10 @@ public class NoteServlet extends HttpServlet {
             String content = request.getParameter("content");
             Note note = new Note(title, content);
             pw.write(note.getTitle());
-            pw.write(note.getContent());
-            getServletContext().getRequestDispatcher("/WEB-INF/viewnote.jsp")
+            pw.write(note.getContent());//These lines write the new information to the file
+            getServletContext().getRequestDispatcher("/WEB-INF/viewnote.jsp") //redirects back to the main page
                     .forward(request, response);
-        }
+        
     }
 
     @Override
