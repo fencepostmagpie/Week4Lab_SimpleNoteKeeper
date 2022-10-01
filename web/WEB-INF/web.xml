@@ -10,12 +10,16 @@
         <load-on-startup>1</load-on-startup>
     </servlet>
     <servlet-mapping>
-        <servlet-name>Faces Servlet</servlet-name>
-        <url-pattern>/faces/*</url-pattern>
+        <servlet-name>NoteServlet</servlet-name>
+        <url-pattern>/note</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>NoteServlet</servlet-name>
-        <url-pattern>/note</url-pattern>
+        <url-pattern>/viewnote</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>NoteServlet</servlet-name>
+        <url-pattern>/editnote</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
